@@ -19,6 +19,8 @@ app.use(bodyParser.json());
 
 app.all('*', (req, res) => {
     res.sendFile(`${__dirname}/index.html`);
+    res.sendFile(`${__dirname}/about.html`);
+
 });
 
 const port = process.env.PORT || 4000;
