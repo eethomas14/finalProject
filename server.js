@@ -1,3 +1,5 @@
+//use some internet resouces to assist with this, most assistance with documentation on codeforgeek.com, although some information found there was outdated.
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');

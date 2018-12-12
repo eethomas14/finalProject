@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Grayscale - Start Bootstrap Theme</title>
+    <title>RefHub</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -68,24 +68,24 @@
     <!--Script for google auto-complete search bar-->
 
     <script>
-
+    //the first step is to autocomplete using the google maps api and use event listener to capture the user selection.
         let autocomplete, userSelectedCountry;
 
         function initAutocomplete() {
             let location = document.getElementById('searchTerm');
             let options = {
-                types: ['(cities)'],
+                types: ['(cities)'], //the 'cities' type allows only cites and countries to populate in the autocomplete.
             };
             autocomplete = new google.maps.places.Autocomplete(location, options);
-            autocomplete.addListener('place_changed', function(e) {
-                let place = autocomplete.getPlace();
+            autocomplete.addListener('place_changed', function(e) { //the place_changed event is triggered when a user selects an option.
+                let place = autocomplete.getPlace(); //saving the place choice using the getPlace function
                 //console.log("place", place);
                 userSelectedCountry = place.address_components;
-
+      //since the user selection contains more place information than just a county, this loop though the data was my solution to accessing the country only
                 for(var i = 0; i <  userSelectedCountry.length; i += 1) {
-                    var addressObj =  userSelectedCountry[i];
+                    var addressObj =  userSelectedCountry[i]; //addressObj is the initialized to i passed to the userSelectedCountry, so basically it is equal to whatever place in address components we are at
                     for(var j = 0; j < addressObj.types.length; j += 1) {
-                        if (addressObj.types[j] === 'country') {
+                        if (addressObj.types[j] === 'country') { //if the address object type passed is the country type, then we will save that value to session storage as the 'userCountry'
 
                             sessionStorage.setItem('userCountry', addressObj.long_name);
                         }
@@ -97,7 +97,7 @@
             });
 
         }
-
+//This is the final step where we use the saved userCountry and match it to the country name key in the JSON countrylist file and then print the values that result to the webpage.
         let countries = []; //made an empty array to store data
 
         function startApp() {
@@ -110,7 +110,7 @@
                     countryExists(countries);
                 });
         }
-
+//to match the values
         function countryExists(jsonCountries) {
             const userSelectedCountry = sessionStorage.getItem('userCountry')
             jsonCountries.map((jsonCountry) => {
@@ -128,7 +128,7 @@
             })
         }
 
-        window.onload = () => {
+        window.onload = () => { // onload event handler runs the following functions only after the entire page and all of its related files and components are loaded
             initAutocomplete();
             startApp();
         }

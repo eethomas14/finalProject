@@ -1,7 +1,7 @@
 [
   {"name": "Afghanistan", "code": "AF", "link": "https://www.mfa.gov.af/", "link2": "https://refugeerights.org/"},
-  {"name": "Åland Islands", "code": "AX", "link": "http://www.google.com"},
-  {"name": "Albania", "code": "AL", "link": "http://www.google.com"},
+  {"name": "Åland Islands", "code": "AX", "link": ""},
+  {"name": "Albania", "code": "AL", "link": "", "link2": ""},
   {"name": "Algeria", "code": "DZ", "link": "https://www.iom.int/countries/algeria/", "link2" : "https://refugeerights.org/"},
   {"name": "American Samoa", "code": "AS"},
   {"name": "Andorra", "code": "AD"},
