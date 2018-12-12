@@ -71,15 +71,12 @@
 
         let autocomplete, userSelectedCountry;
 
-
         function initAutocomplete() {
             let location = document.getElementById('searchTerm');
             let options = {
                 types: ['(cities)'],
             };
-
             autocomplete = new google.maps.places.Autocomplete(location, options);
-
             autocomplete.addListener('place_changed', function(e) {
                 let place = autocomplete.getPlace();
                 //console.log("place", place);
@@ -100,13 +97,16 @@
             });
 
         }
-        let countries = [];
+
+        let countries = []; //made an empty array to store data
+
         function startApp() {
-            // step a: get country json from file
-            fetch('countrylist.json')
-                .then(res =>  res.json())
-                .then(function(data){
-                    countries = data
+
+            fetch('countrylist.json') //using the fetch api to access the json file.
+
+                    .then(res =>  res.json())
+                .then(function(data){ //after response with payload, data is passed to function.
+                    countries = data  //passes the data into the countries array
                     countryExists(countries);
                 });
         }
@@ -119,8 +119,9 @@
                     // country matches
                     // we're on the current object that we want
                     console.log(jsonCountry.link);
-                    document.getElementById('output').innerHTML='<a href>'+ jsonCountry.link + '</a>'  + '<br/>' + '<a href>' + jsonCountry.link2 + '</a>';
+                    document.getElementById('output').innerHTML='<a href=' + jsonCountry.link + '>'+ 'Immigration Website' + '</a>'  + '<br/>' + '<a href=' + jsonCountry.link2 + '>' + 'Legal Resources' +'</a>';
                     document.getElementById('resources').innerHTML="Resources for " + userSelectedCountry + ":";
+
 
 
                 }
@@ -133,7 +134,10 @@
         }
 
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=initAutocomplete&language=en&output=json&key=AIzaSyD2WLbm1GHyrkrMhRPnoXtxV6-bcXWyKEM" async defer></script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=initAutocomplete&language=en&output=json&key=AIzaSyD2WLbm1GHyrkrMhRPnoXtxV6-bcXWyKEM" async defer>
+      //This script is the google api call that has the api key
+    </script>
 
 
     <!-- Signup Section -->
